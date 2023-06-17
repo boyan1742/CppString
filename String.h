@@ -26,6 +26,7 @@ class String
 
     void ClearStaticArray();
     void CopyFrom(const String &other);
+    void MoveFrom(String&& other);
     void Free();
     void Resize(size_t newCapacity);
 
@@ -36,9 +37,11 @@ public:
     String();
     String(const char *str);
     String(const String &copy);
+    String(String&& other);
     ~String();
 
     String &operator=(const String &other);
+    String& operator=(String&& other);
 
     char operator[](size_t idx) const;
     char &operator[](size_t idx);
@@ -62,13 +65,13 @@ public:
 
     bool Contains(char ch) const;
     size_t AmountOf(char ch) const;
-
-    #ifdef USE_SPLIT
+	
+	#ifdef USE_SPLIT
     Array<String> Split(char ch) const;
-    #endif
+	#endif
 
-    bool operator==(const String &rhs);
-    bool operator!=(const String &rhs);
+    bool operator==(const String &rhs) const;
+    bool operator!=(const String &rhs) const;
 
     friend std::ostream &operator<<(std::ostream &os, const String &str);
     friend std::istream &operator>>(std::istream &is, String &str);
@@ -93,6 +96,7 @@ public:
 
     void ToLower();
     void ToUpper();
+    bool EndsWith(const String& string) const;
 };
 
 std::ostream &operator<<(std::ostream &os, const String &str);
