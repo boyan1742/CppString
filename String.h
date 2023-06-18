@@ -114,4 +114,4 @@ String operator+(const String &lhs, int8_t rhs);
 String operator+(const String &lhs, double rhs);
 
 
-#endif //ZAD1_STRING_H
+#endif
